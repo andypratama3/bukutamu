@@ -9,7 +9,7 @@
 
       <ul class="navbar-nav navbar-nav-right">
         <li class="nav-item nav-logout d-none d-lg-block">
-          <a class="nav-link" href="{{ route('dashboard') }}">
+          <a class="nav-link" href="/">
             <i class="mdi mdi-home-circle"></i>
           </a>
         </li>

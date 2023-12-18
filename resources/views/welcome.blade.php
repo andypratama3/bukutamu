@@ -198,6 +198,60 @@ body {
                 text-align: center;
                 margin-top: 30px;
             }
+            @media (max-width: 768px)  {
+        .container .header .img-head{
+            margin: 20px;
+        }
+        .container .header .img-home{
+            margin-top: 30px;
+            width: 12%;
+        }
+        .container .header .img-tulisan{
+            transform: translateX(-559px);
+            margin-top: 25px;
+            width: 50%;
+            display: inline-flex;
+        }
+        .container .header .img-tut{
+            transform: translateX(-659px);
+            margin-top: 30px;
+            width: 12%;
+            display: inline-flex;
+            justify-items: center;
+        }
+        .container .button-home .card{
+            width: 17rem !important;
+            bottom: 40px;
+            right: 70px;
+        }
+
+    }
+    @media (max-width:961px)  { /* tablet, landscape iPad, lo-res laptops ands desktops */
+
+        .container .header .img-home{
+            margin-top: 30px;
+            width: 12%;
+        }
+        .container .header .img-tulisan{
+            transform: translateX(-530px);
+            width: 40%;
+
+        }
+        .container .header .img-tut{
+            transform: translateX(-610px);
+            width: 10%;
+            display: inline-flex;
+            justify-items: center;
+        }
+        .container .button-home .card{
+            width: 16rem !important;
+            bottom: 40px;
+            right: 75px;
+        }
+        .container .bg-tengah{
+            margin: 40px;
+        }
+}
 
         </style>
 </head>
@@ -211,16 +265,16 @@ body {
         </div>
         <div class="row bg-tengah" style="padding: 20px;">
             <div class="button-home">
-                <div class="col-md-6 mt-5 box">
+                <div class="col-md-6 mt-5 d-flex box">
                     <div class="form-group" style="width: 45%; margin-right: 5%;">
                         <div class="card border-0" style="width: 25rem;" style="background: none;">
                             <a href="{{ route('buku.tamu.index') }}">
-                                <img src="{{ asset('asset/img/menu1.png') }}" class="card-img-top" style="background: none;" alt="...">
+                                <img src="{{ asset('asset/img/menu1.png') }}" class="card-img-top logo-buku-tamu" style="background: none;" alt="...">
                             </a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 mt-5 box">
+                <div class="col-md-6 mt-5 box d-flex">
                     <div class="form-group" style="width: 45%; margin-right: 5%;">
                         <div class="card border-0" style="width: 25rem;" style="background: none;">
                             <a href="{{ route('survei.index') }}">

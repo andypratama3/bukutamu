@@ -11,27 +11,16 @@
         <div class="card-body">
           <h4 class="card-title text-center">Data Buku Tamu</h4>
           <div class="row">
-            <div class="col-4">
+            <div class="col-6">
                 <label for="">Tanggal Mulai</label>
                 <div class="form-group">
-                    <input type="date" class="form-control">
+                    <input type="date" class="form-control" name="date_start" id="date_start" >
                 </div>
             </div>
-            <div class="col-4">
+            <div class="col-6">
                 <label for="">Tanggal Selesai</label>
                 <div class="form-group">
-                    <input type="date" class="form-control">
-                </div>
-            </div>
-            <div class="col-4">
-                <?php $years = range(2010, strftime("%Y", time())); ?>
-                <label for="">Tahun</label>
-                <div class="form-group">
-                    <select name="" id="" class="form-control">
-                        <?php foreach($years as $year) : ?>
-                        <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
-                      <?php endforeach; ?>
-                    </select>
+                    <input type="date" class="form-control" name="date_end" id="date_end">
                 </div>
             </div>
         </div>
@@ -79,6 +68,10 @@
             pageLength: 50,
             ajax: {
                 'url': $('#buku_tamuData').val(),
+                'data': function (d){
+                    d.date_start = $('#date_start').val();
+                    d.date_end = $('#date_end').val();
+                },
             },
             columns: [{
                     data: 'DT_RowIndex',
@@ -146,7 +139,12 @@
                 }
             });
         });
-
+        $('#date_start').on('change',function (e) {
+            reloadTable('#bukuTamu_table');
+        });
+        $('#date_end').on('change',function (e) {
+            reloadTable('#bukuTamu_table');
+        });
     });
 </script>
 @endpush

@@ -13,9 +13,19 @@ class BukuTamuController extends Controller
     {
         return view('dashboard.bukutamu.index');
     }
-    public function data_table()
+    public function data_table(Request $request)
     {
         $query = BukuTamu::select('id','name','instansi','hp','tujuan')->orderBy('created_at','desc');
+        $date_start = $request->date_start;
+        $date_end = $request->date_end;
+        if ($date_start && $date_end) {
+            $query = $query->whereBetween('created_at', [$date_start, $date_end])->orderBy('created_at');
+        } elseif ($date_start) {
+            $query = $query->where('created_at', $date_start)->orderBy('created_at');
+        } elseif ($date_end) {
+            $query = $query->where('created_at', $date_end)->orderBy('created_at');
+        }
+
         return DataTables::of($query)
                 ->addColumn('options', function ($row){
                     return '
@@ -26,6 +36,7 @@ class BukuTamuController extends Controller
                 ->rawColumns(['options'])
                 ->addIndexColumn()
                 ->make(true);
+
     }
     public function edit($id)
     {

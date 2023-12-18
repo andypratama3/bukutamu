@@ -67,6 +67,50 @@
         margin-top: 20px;
 
     }
+
+    @media (max-width: 768px)  {
+        .container .header .img-head{
+            margin: 20px;
+        }
+        .container .header .img-home{
+            margin-top: 30px;
+            width: 12%;
+        }
+        .container .header .img-tulisan{
+            transform: translateX(-559px);
+            margin-top: 25px;
+            width: 50%;
+            display: inline-flex;
+        }
+        .container .header .img-tut{
+            transform: translateX(-659px);
+            margin-top: 30px;
+            width: 12%;
+            display: inline-flex;
+            justify-items: center;
+        }
+
+    }
+    @media (max-width:961px)  { /* tablet, landscape iPad, lo-res laptops ands desktops */
+        .container .header .img-home{
+            margin-top: 30px;
+            width: 12%;
+        }
+        .container .header .img-tulisan{
+            transform: translateX(-600px);
+            margin-top: 20px;
+            width: 50%;
+
+        }
+        .container .header .img-tut{
+            transform: translateX(-660px);
+            margin-top: 40px;
+            width: 10%;
+            display: inline-flex;
+            justify-items: center;
+        }
+    }
+
 </style>
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
 <link rel="stylesheet" href="{{ asset('asset/font-awesome-4.7.0/css/font-awesome.css') }}">
@@ -387,7 +431,9 @@
                 }
             });
         });
-
+        setInterval(() => {
+            window.location.href = '/';
+        }, 120000);
     });
 </script>
 @endpush

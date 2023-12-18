@@ -8,7 +8,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link {{ Request::routeIs('dashboard') ? '' : 'active' }}" href="{{ route('dashboard')}}">
           <i class="mdi mdi-compass-outline menu-icon"></i>
           <span class="menu-title">Dashboard</span>
         </a>
@@ -17,34 +17,16 @@
         <span class="nav-item-head">Data</span>
       </li>
       <li class="nav-item">
-        <a class="nav-link {{ Request::routeIs('bukutamu.*') ? 'active' : '' }}" href="{{ route('dashboard.bukutamu.index') }}">
+        <a class="nav-link {{ Request::routeIs('dashboard.bukutamu.*') ? 'active' : '' }}" href="{{ route('dashboard.bukutamu.index') }}">
           <i class="mdi mdi-book menu-icon"></i>
           <span class="menu-title">Buku Tamu Data</span>
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="pages/forms/basic_elements.html">
-          <i class="mdi mdi-format-list-bulleted menu-icon"></i>
-          <span class="menu-title">Survei</span>
+      {{-- <li class="nav-item {{ Request::routeIs('dashboard.survei.*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('dashboard.survei.index') }}">
+          <i class="mdi mdi-book menu-icon"></i>
+          <span class="menu-title">Survei Data</span>
         </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="pages/charts/chartjs.html">
-          <i class="mdi mdi-chart-bar menu-icon"></i>
-          <span class="menu-title">Charts</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="pages/tables/basic-table.html">
-          <i class="mdi mdi-table-large menu-icon"></i>
-          <span class="menu-title">Tables</span>
-        </a>
-      </li>
-      <li class="nav-item pt-3">
-        <a class="nav-link" href="http://bootstrapdash.com/demo/plus-free/documentation/documentation.html" target="_blank">
-          <i class="mdi mdi-file-document-box menu-icon"></i>
-          <span class="menu-title">Documentation</span>
-        </a>
-      </li>
+      </li> --}}
     </ul>
   </nav>

@@ -1,5 +1,5 @@
 @extends('layouts.app');
-@section('title','Buku Tamu')
+@section('title','Survei')
 @section('content')
 @push('css')
 <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
@@ -68,31 +68,72 @@
         margin-top: 20px;
 
     }
+ @media (max-width: 768px)  {
+        .container .header .img-head{
+            margin: 20px;
+        }
+        .container .header .img-home{
+            margin-top: 30px;
+            width: 12%;
+        }
+        .container .header .img-tulisan{
+            transform: translateX(-559px);
+            margin-top: 25px;
+            width: 50%;
+            display: inline-flex;
+        }
+        .container .header .img-tut{
+            transform: translateX(-659px);
+            margin-top: 30px;
+            width: 12%;
+            display: inline-flex;
+            justify-items: center;
+        }
 
+    }
+    @media (max-width:961px)  { /* tablet, landscape iPad, lo-res laptops ands desktops */
+        .container .header .img-home{
+            margin-top: 30px;
+            width: 12%;
+        }
+        .container .header .img-tulisan{
+            transform: translateX(-600px);
+            margin-top: 20px;
+            width: 50%;
+
+        }
+        .container .header .img-tut{
+            transform: translateX(-660px);
+            margin-top: 40px;
+            width: 10%;
+            display: inline-flex;
+            justify-items: center;
+        }
+    }
     .row .card .card-body .survei_icon {
         font-size: 6rem;
         margin: 20px;
         display: flex;
     }
-.animasi_icon {
-    animation-name: cssAnimation;
-    animation-duration: 3s;
-    animation-iteration-count: 1;
-    animation-timing-function: ease-in-out;
-    animation-fill-mode: forwards;
-    opacity: 1;
-}
-
-@keyframes cssAnimation {
-    from {
-        transform: translate(-50%, -50%) scale(1);
+        .animasi_icon {
+        animation-name: cssAnimation;
+        animation-duration: 3s;
+        animation-iteration-count: 1;
+        animation-timing-function: ease-in-out;
+        animation-fill-mode: forwards;
         opacity: 1;
-    }
-    to {
-        transform: translate(-50%, -50%) scale(2);
-        opacity: 0.5;
-    }
-}
+        }
+
+        @keyframes cssAnimation {
+        from {
+            transform: scale(1);
+            opacity: 1;
+        }
+        to {
+            transform: scale(2);
+            opacity: 0.5;
+        }
+        }
 
 
 
@@ -102,7 +143,7 @@
 
 @endpush
 <div class="row row-not-refresh">
-    <div class="container  text-center" style="">
+    {{-- <div class="container  text-center" style="">
         <div class="header">
             <img src="{{ asset('asset/img/head.png') }}" alt="" class="img-head">
             <img src="{{ asset('asset/img/tulisan.png') }}" alt="" class="img-tulisan">
@@ -112,7 +153,7 @@
             </a>
 
         </div>
-    </div>
+    </div> --}}
     {{-- <div class="container  text-center" style="">
         <a href="/">
             <img src="{{ asset('asset/img/home.png') }}" class="card-img-top" style="background: none; width: 10%;"
@@ -189,7 +230,6 @@
 <div class="col-lg-12 grid-margin stretch-card">
     <div class="card mx-5">
       <div class="card-body">
-        </p>
         <div class="table-responsive">
           <table class="table">
             <tbody>
@@ -197,35 +237,32 @@
                 <td>Sangat Baik <i class="em em-heart_eyes"></i>    : </td>
                 <td>
                     <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+                        <div class="progress-bar bg-success" role="progressbar" style="width: {{ $percent_sangatBaik }}%;" aria-valuenow="{{ $percent_sangatBaik }}" aria-valuemin="0" aria-valuemax="100">{{ $percent_sangatBaik ?? 0 }}%</div>
                       </div>
                 </td>
               </tr>
               <tr>
                 <td>Cukup <i class="em em-smiley"></i>  : </td>
                 <td>
-                    <div class="progress" id="progress1">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="0"
-                            aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
+                    <div class="progress">
+                        <div class="progress-bar bg-danger" role="progressbar" style="width: {{ $percent_cukup }}%;" aria-valuenow="{{ $percent_cukup }}" aria-valuemin="0" aria-valuemax="100">{{ $percent_cukup ?? 0 }}%</div>
+                      </div>
                 </td>
               </tr>
               <tr>
                 <td>Baik <i class="em em-blush"></i>  : </td>
                 <td>
-                    <div class="progress" id="progress1">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="0"
-                            aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
+                    <div class="progress">
+                        <div class="progress-bar bg-primary" role="progressbar" style="width: {{ $percent_baik }}%;" aria-valuenow="{{ $percent_baik }}" aria-valuemin="0" aria-valuemax="100">{{ $percent_baik ?? 0 }}%</div>
+                      </div>
                 </td>
               </tr>
               <tr>
                 <td>Buruk <i class="em em-anguished"></i>  : </td>
                 <td>
-                    <div class="progress" id="progress1">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="0"
-                            aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
+                    <div class="progress">
+                        <div class="progress-bar bg-warning" role="progressbar" style="width: {{ $percent_buruk }}%;" aria-valuenow="{{ $percent_buruk }}" aria-valuemin="0" aria-valuemax="100">{{ $percent_buruk ?? 0 }}%</div>
+                      </div>
                 </td>
               </tr>
             </tbody>
@@ -256,9 +293,9 @@
                 dataType: "json",
                 success: function (response) {
                     const text_content = 'Terima Kasih Atas Tanggapan Anda, Anda Memilih ';
+                    $('.table-responsive').load(location.href + " .table-responsive");
                     if(response.success === 1){
                         $('.em-anguished').addClass('animasi_icon');
-                        $('#text-content1').addClass('animasi_icon');
                         $('#show-text').text(text_content + 'Buruk');
                         setTimeout(function () {
                             $('.em-anguished').removeClass('animasi_icon');
@@ -266,7 +303,6 @@
                         }, 3000);
                     }else if(response.success === 2){
                         $('.em-blush').addClass('animasi_icon');
-                        $('#text-content2').addClass('animasi_icon');
                         $('#show-text').text(text_content + 'Baik');
                         setTimeout(function () {
                             $('.em-blush').removeClass('animasi_icon');
@@ -274,7 +310,6 @@
                         }, 3000);
                     }else if(response.success === 3){
                         $('.em-smiley').addClass('animasi_icon');
-                        $('#text-content3').addClass('animasi_icon');
                         $('#show-text').text(text_content + 'Cukup');
                         setTimeout(function () {
                             $('.em-smiley').removeClass('animasi_icon');
@@ -282,7 +317,6 @@
                         }, 3000);
                     }else if(response.success === 4){
                         $('.em-heart_eyes').addClass('animasi_icon');
-                        $('#text-content4').addClass('animasi_icon');
                         $('#show-text').text(text_content + 'Sangat Baik');
                         setTimeout(function () {
                             $('.em-heart_eyes').removeClass('animasi_icon');
@@ -303,6 +337,9 @@
             reaction(selectedOption);
         }
         });
+        setInterval(() => {
+            window.location.href = '/';
+        }, 120000);
     });
 </script>
 @endpush
